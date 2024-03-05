@@ -1,5 +1,4 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:dalalname/radio_staged_widget.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -18,7 +17,6 @@ class _SecondWidgetState extends State<SecondWidget> {
   bool finalTextFinished = false;
   String? selectedRadio;
   bool nameSubmitted = false;
-  GlobalKey _one = GlobalKey();
 
   @override
   void dispose() {
@@ -79,25 +77,19 @@ class _SecondWidgetState extends State<SecondWidget> {
                       ? Column(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Showcase.withWidget(
-                              key: _one,
-                              height: MediaQuery.of(context).size.height / 2,
-                              width: MediaQuery.of(context).size.width - 50,
-                              container: const RadioStagedWidget(),
-                              child: RadioListTile<String?>(
-                                value: 'raza',
-                                groupValue: selectedRadio,
-                                onChanged: (value) {
-                                  setState(() {
-                                    selectedRadio = value;
-                                  });
-                                },
-                                title: Text(
-                                  'Raza',
-                                  style: GoogleFonts.lilitaOne().copyWith(
-                                    fontSize: 24.0,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                            RadioListTile<String?>(
+                              value: 'raza',
+                              groupValue: selectedRadio,
+                              onChanged: (value) {
+                                setState(() {
+                                  selectedRadio = value;
+                                });
+                              },
+                              title: Text(
+                                'Raza',
+                                style: GoogleFonts.lilitaOne().copyWith(
+                                  fontSize: 24.0,
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
                             ),
@@ -108,13 +100,8 @@ class _SecondWidgetState extends State<SecondWidget> {
                               value: 'natalie',
                               groupValue: selectedRadio,
                               onChanged: (value) {
-                                if (value == 'natalie') {
-                                  ShowCaseWidget.of(context).startShowCase([
-                                    _one,
-                                  ]);
-                                }
                                 setState(() {
-                                  selectedRadio = null;
+                                  selectedRadio = 'natalie';
                                 });
                               },
                               title: Text(
@@ -131,7 +118,7 @@ class _SecondWidgetState extends State<SecondWidget> {
                 ),
                 AnimatedSwitcher(
                   duration: const Duration(milliseconds: 200),
-                  child: !nameSubmitted && selectedRadio == 'raza'
+                  child: !nameSubmitted && selectedRadio != null
                       ? Column(
                           children: [
                             TextField(
@@ -168,6 +155,7 @@ class _SecondWidgetState extends State<SecondWidget> {
                                 if (controller.text.isNotEmpty) {
                                   final postData = {
                                     'name': controller.text,
+                                    'selector': selectedRadio
                                   };
 
                                   // Get a key for a new Post.
