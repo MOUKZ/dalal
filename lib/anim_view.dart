@@ -23,7 +23,7 @@ class _AnimViewState extends State<AnimView> {
       // ),
       body: Stack(
         children: [
-          const Expanded(child: StarrySkyView()),
+          StarrySkyView(),
           AnimatedSwitcher(
             duration: const Duration(milliseconds: 200),
             child: yesClicked

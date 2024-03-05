@@ -31,7 +31,7 @@ class _InitialWidgetState extends State<InitialWidget> {
                 },
                 animatedTexts: [
                   TypewriterAnimatedText(
-                      'Nether me nor Dalal like unfinished business',
+                      'Neither me nor Dalal like unfinished business',
                       textStyle: GoogleFonts.lilitaOne().copyWith(
                         fontSize: 24.0,
                         fontWeight: FontWeight.bold,

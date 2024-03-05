@@ -58,6 +58,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '794279079327',
     projectId: 'dalalname-288d9',
     authDomain: 'dalalname-288d9.firebaseapp.com',
+    databaseURL: 'https://dalalname-288d9-default-rtdb.europe-west1.firebasedatabase.app',
     storageBucket: 'dalalname-288d9.appspot.com',
     measurementId: 'G-T0RMQCRRLT',
   );
